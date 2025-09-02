@@ -38,7 +38,20 @@ class Enemy(Character):
     def display_details(self):
         return f"{super().display_details()}\nTipo: {self.get_type()}\n"
     
-hero = Hero(name="Herói", life=100, level=5, skill="Super Força")
-print(hero.display_details()) 
-enemy = Enemy(name="Morcego", life=50, level=3, type="Voador")
-print(enemy.display_details())
+class Game:
+    def __init__(self) -> None:
+        self.hero = Hero(name="Herói", life=100, level=5, skill="Super Força")
+        self.enemy = Enemy(name="Morcego", life=50, level=3, type="Voador")
+
+    def start_battle(self):
+        print("Iniciando batalha!")
+        while self.hero.get_life() > 0 and self.enemy.get_life() > 0:
+            print("\nDetalhes dos Personagens:")
+            print(self.hero.display_details())
+            print(self.enemy.display_details())
+
+            input("Pressione Enter para atacar...")
+            choice = input("Escolha (1 - Ataque Normal, 2 - Ataque Especial): ")
+    
+game = Game()
+game.start_battle()
