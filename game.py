@@ -1,3 +1,5 @@
+import random
+
 class Character: 
     def __init__(self, name, life, level):
         self.__name = name
@@ -22,7 +24,7 @@ class Character:
             self.__life = 0
 
     def attack(self, target):
-        damage = self.__level * 2
+        damage = random.randint(self.get_level() * 2, self.get_level() * 4)
         target.receive_attack(damage)
         print(f"{self.get_name()} atacou {target.get_name()} e causou {damage} de dano!")
 
@@ -38,7 +40,7 @@ class Hero(Character):
         return f"{super().display_details()}\nHabilidade: {self.get_skill()}\n"
     
     def special_attack(self, target):
-        damage = self.get_level() * 5
+        damage = random.randint(self.get_level() * 5, self.get_level() * 8)
         target.receive_attack(damage)
         print(f"{self.get_name()} usou a habilidade especial {self.get_skill()} em {target.get_name()} e causou {damage} de dano!")
     
@@ -56,7 +58,7 @@ class Enemy(Character):
 class Game:
     def __init__(self) -> None:
         self.hero = Hero(name="Herói", life=100, level=5, skill="Super Força")
-        self.enemy = Enemy(name="Morcego", life=50, level=3, type="Voador")
+        self.enemy = Enemy(name="Morcego", life=80, level=3, type="Voador")
 
     def start_battle(self):
         print("Iniciando batalha!")
