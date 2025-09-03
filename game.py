@@ -74,6 +74,9 @@ class Game:
                 self.hero.special_attack(self.enemy)
             else:
                 print("Escolha inválida. Escolha novamente.")
+
+            if self.enemy.get_life() > 0:
+                self.enemy.attack(self.hero)
         
         if self.hero.get_life() > 0:
             print("\nParabéns, você venceu a batalha!")
